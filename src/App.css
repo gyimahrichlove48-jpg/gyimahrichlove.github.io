@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+
 :root {
   --bg: #070A0F;
   --panel: #0C1119;
@@ -9,6 +11,8 @@
   --accent: #2FA8FF;
   --accent-dim: #123049;
   --accent-glow: rgba(47, 168, 255, 0.35);
+  --font-display: 'Orbitron', ui-sans-serif, sans-serif;
+  --font-body: 'Inter', -apple-system, 'Segoe UI', sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -17,7 +21,13 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: ui-monospace, 'SFMono-Regular', Consolas, 'Courier New', monospace;
+  font-family: var(--font-body);
+}
+
+h1, h2, .brand-title, .hero-title, .hero-tag, .welcome, .status-value,
+.module-title, .about-name, .breadcrumb, .pill, .nav-label,
+.btn-primary, .btn-secondary, .skills-heading {
+  font-family: var(--font-display);
 }
 
 .shell {
@@ -94,6 +104,13 @@ body {
   font-size: 12px;
   font-weight: 700;
   flex-shrink: 0;
+  overflow: hidden;
+}
+
+.identity-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .identity-name {
@@ -147,6 +164,21 @@ body {
   border-left-color: var(--accent);
   color: var(--text);
 }
+
+.about-link {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0 0 12px;
+  text-align: left;
+}
+
+.about-link:hover { color: var(--accent); }
 
 .sidebar-footer {
   margin-top: auto;
@@ -406,6 +438,116 @@ body {
 @media (max-width: 900px) {
   .status-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-title { font-size: 36px; }
+}
+
+.about-main {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.about-back {
+  margin-bottom: 40px;
+}
+
+.about-content {
+  text-align: center;
+}
+
+.about-avatar {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+  margin: 0 auto 20px;
+}
+
+.about-name {
+  margin: 0 0 6px;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.about-role {
+  margin: 0 0 28px;
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.about-bio {
+  max-width: 480px;
+  margin: 0 auto 32px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.about-links {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.about-link-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.about-link-item:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.about-skills {
+  margin-top: 44px;
+  text-align: left;
+}
+
+.skills-block {
+  margin-bottom: 28px;
+}
+
+.skills-heading {
+  margin: 0 0 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.skill-tag.accent {
+  border-color: var(--accent-dim);
+  color: var(--accent);
 }
 
 @media (max-width: 640px) {

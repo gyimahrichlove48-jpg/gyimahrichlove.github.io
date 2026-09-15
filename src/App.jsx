@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+// import profilePhoto from './assets/profile.jpg'
 
 const NAV_ITEMS = ['Dashboard', 'Network', 'System', 'Database', 'Terminal']
 
@@ -38,7 +39,10 @@ function Sidebar({ activeNav, onSelect, onAbout }) {
       </div>
 
       <div className="identity-card">
-        <div className="identity-avatar">L</div>
+        <div className="identity-avatar">
+          {/* Replace the R below with: <img src={profilePhoto} alt="Richlove Gyimah" /> */}
+          R
+        </div>
         <div>
           <p className="identity-name">Lionel Richy</p>
           <p className="identity-sub">Root access</p>
@@ -143,6 +147,16 @@ function StatusGrid() {
   )
 }
 
+const TECH_SKILLS = [
+  'HTML & CSS', 'JavaScript', 'React.js', 'Git & GitHub', 'Microsoft Word & Excel',
+  'AutoCAD', 'Engineering drawing', 'Chemical engineering principles', 'Basic electronics', 'Analytical chemistry',
+]
+
+const SOFT_SKILLS = [
+  'Communication', 'Teamwork', 'Problem solving', 'Time management',
+  'Critical thinking', 'Adaptability', 'Willingness to learn',
+]
+
 function AboutPage({ onBack }) {
   return (
     <div className="about-page">
@@ -151,7 +165,10 @@ function AboutPage({ onBack }) {
       </button>
 
       <div className="about-content">
-        <div className="identity-avatar about-avatar">R</div>
+        <div className="identity-avatar about-avatar">
+          {/* Replace the R below with: <img src={profilePhoto} alt="Richlove Gyimah" /> */}
+          R
+        </div>
         <h1 className="about-name">Richlove Gyimah</h1>
         <p className="about-role">Chemical engineering student, UMaT</p>
 
@@ -170,6 +187,25 @@ function AboutPage({ onBack }) {
           <a className="about-link-item" href="https://www.linkedin.com/in/richlove-gyimah-3299913a9" target="_blank" rel="noreferrer">
             LinkedIn <span>&rarr;</span>
           </a>
+        </div>
+
+        <div className="about-skills">
+          <div className="skills-block">
+            <p className="skills-heading">Technical skills</p>
+            <div className="skills-tags">
+              {TECH_SKILLS.map((s) => (
+                <span className="skill-tag" key={s}>{s}</span>
+              ))}
+            </div>
+          </div>
+          <div className="skills-block">
+            <p className="skills-heading">Soft skills</p>
+            <div className="skills-tags">
+              {SOFT_SKILLS.map((s) => (
+                <span className="skill-tag accent" key={s}>{s}</span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
