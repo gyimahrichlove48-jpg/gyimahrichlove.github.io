@@ -1,6 +1,16 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-// import profilePhoto from './assets/profile.jpg'
+
+function AtomIcon() {
+  return (
+    <svg viewBox="0 0 40 40" className="atom-icon" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="20" r="3" fill="currentColor" />
+      <ellipse cx="20" cy="20" rx="16" ry="7" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <ellipse cx="20" cy="20" rx="16" ry="7" fill="none" stroke="currentColor" strokeWidth="1.6" transform="rotate(60 20 20)" />
+      <ellipse cx="20" cy="20" rx="16" ry="7" fill="none" stroke="currentColor" strokeWidth="1.6" transform="rotate(120 20 20)" />
+    </svg>
+  )
+}
 
 const NAV_ITEMS = ['Dashboard', 'Network', 'System', 'Database', 'Terminal']
 
@@ -40,8 +50,7 @@ function Sidebar({ activeNav, onSelect, onAbout }) {
 
       <div className="identity-card">
         <div className="identity-avatar">
-          {/* Replace the R below with: <img src={profilePhoto} alt="Richlove Gyimah" /> */}
-          R
+          <AtomIcon />
         </div>
         <div>
           <p className="identity-name">Lionel Richy</p>
@@ -166,8 +175,7 @@ function AboutPage({ onBack }) {
 
       <div className="about-content">
         <div className="identity-avatar about-avatar">
-          {/* Replace the R below with: <img src={profilePhoto} alt="Richlove Gyimah" /> */}
-          R
+          <AtomIcon />
         </div>
         <h1 className="about-name">Richlove Gyimah</h1>
         <p className="about-role">Chemical engineering student, UMaT</p>

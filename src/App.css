@@ -113,6 +113,11 @@ h1, h2, .brand-title, .hero-title, .hero-tag, .welcome, .status-value,
   object-fit: cover;
 }
 
+.atom-icon {
+  width: 60%;
+  height: 60%;
+}
+
 .identity-name {
   margin: 0;
   font-size: 12px;
