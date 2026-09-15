@@ -109,8 +109,8 @@ function Hero({ activeNav, initialized, onInitialize, showLogs, onToggleLogs, lo
       ) : (
         <div className="hero">
           <span className="pill"><span className="dot" /> {initialized ? 'System initialized' : 'System online'}</span>
-          <h2 className="hero-title">Lionel Richy <span className="slashes">//</span></h2>
-          <p className="hero-tag">Cyber command</p>
+          <h2 className="hero-title">Gyimah Richlove <span className="slashes">👩‍🔬</span></h2>
+          <p className="hero-tag">Universal Chemist🧪⚗️</p>
           <p className="hero-desc">
             Welcome to the private command interface. Monitor systems, analyze networks and
             control your digital environment.
