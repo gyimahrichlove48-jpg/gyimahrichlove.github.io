@@ -12,21 +12,69 @@ function AtomIcon() {
   )
 }
 
-const NAV_ITEMS = ['Dashboard', 'Network', 'System', 'Database', 'Terminal']
+const NAV_ITEMS = ['Dashboard', 'Reactions', 'Samples', 'Formulas', 'Lab notes']
 
-const NAV_CONTENT = {
-  Network: { title: 'Network module', desc: 'Live traffic, connected nodes and routing status would surface here.' },
-  System: { title: 'System module', desc: 'CPU, memory and process-level diagnostics would surface here.' },
-  Database: { title: 'Database module', desc: 'Query throughput, replication lag and table health would surface here.' },
-  Terminal: { title: 'Terminal module', desc: 'A live command console would surface here.' },
-}
+const REACTIONS = [
+  { name: 'Esterification synthesis', stage: 'Heating', temp: '68°C', pct: 72, eta: '12 min left' },
+  { name: 'Acid-base titration', stage: 'Endpoint reached', temp: '24°C', pct: 100, eta: 'Complete' },
+  { name: 'Recrystallization batch 3', stage: 'Cooling', temp: '31°C', pct: 45, eta: '28 min left' },
+]
+
+const SAMPLES = [
+  { id: 'SMP-014', name: 'Ethanol extract', status: 'In analysis', location: 'Rack B2' },
+  { id: 'SMP-015', name: 'Copper sulfate solution', status: 'Stored', location: 'Fridge A1' },
+  { id: 'SMP-016', name: 'Unknown organic compound', status: 'Awaiting GC-MS', location: 'Bench 3' },
+  { id: 'SMP-017', name: 'Calibration standard', status: 'Stored', location: 'Cabinet C4' },
+]
+
+const FORMULAS = [
+  { name: 'Sulfuric acid', formula: 'H₂SO₄', note: 'Strong diprotic acid' },
+  { name: 'Sodium bicarbonate', formula: 'NaHCO₃', note: 'Mild base, buffering agent' },
+  { name: 'Ethanol', formula: 'C₂H₅OH', note: 'Common solvent, flammable' },
+  { name: 'Glucose', formula: 'C₆H₁₂O₆', note: 'Simple sugar, reference compound' },
+]
+
+const LAB_NOTES = [
+  { date: 'Sep 15', text: 'Esterification yield lower than expected — check reflux temperature next run.' },
+  { date: 'Sep 13', text: 'Titration endpoint consistent across 3 trials. Concentration confirmed at 0.1M.' },
+  { date: 'Sep 10', text: 'New batch of ethanol extract logged and stored in Rack B2.' },
+]
 
 const STATUS_CARDS = [
-  { label: 'System status', value: 'Online', sub: '96% operational capacity', pct: 96 },
-  { label: 'Network', value: 'Secure', sub: 'Encrypted connection', pct: 88 },
-  { label: 'Database', value: 'Active', sub: 'Sync in progress', pct: 72 },
-  { label: 'Firewall', value: 'Protected', sub: 'Threat protection enabled', pct: 100 },
+  { label: 'Lab status', value: 'Online', sub: '96% operational capacity', pct: 96 },
+  { label: 'Reaction', value: 'Stable', sub: 'Temperature within range', pct: 88 },
+  { label: 'Samples', value: 'Active', sub: 'Analysis in progress', pct: 72 },
+  { label: 'Containment', value: 'Secure', sub: 'Safety protocols enabled', pct: 100 },
 ]
+
+function BubbleField() {
+  const bubbles = [
+    { size: 18, left: '6%', duration: 14, delay: 0 },
+    { size: 10, left: '18%', duration: 10, delay: 2 },
+    { size: 26, left: '32%', duration: 18, delay: 4 },
+    { size: 14, left: '48%', duration: 12, delay: 1 },
+    { size: 20, left: '64%', duration: 16, delay: 3 },
+    { size: 12, left: '78%', duration: 11, delay: 5 },
+    { size: 22, left: '90%', duration: 15, delay: 2.5 },
+  ]
+  return (
+    <div className="bubble-field" aria-hidden="true">
+      {bubbles.map((b, i) => (
+        <span
+          key={i}
+          className="bubble"
+          style={{
+            width: b.size,
+            height: b.size,
+            left: b.left,
+            animationDuration: `${b.duration}s`,
+            animationDelay: `${b.delay}s`,
+          }}
+        />
+      ))}
+    </div>
+  )
+}
 
 function useClock() {
   const [time, setTime] = useState(new Date())
@@ -44,7 +92,7 @@ function Sidebar({ activeNav, onSelect, onAbout }) {
         <div className="brand-mark">L</div>
         <div>
           <p className="brand-title">Lionel Richy</p>
-          <p className="brand-sub">Cyber system</p>
+          <p className="brand-sub">Chem lab</p>
         </div>
       </div>
 
@@ -54,7 +102,7 @@ function Sidebar({ activeNav, onSelect, onAbout }) {
         </div>
         <div>
           <p className="identity-name">Lionel Richy</p>
-          <p className="identity-sub">Root access</p>
+          <p className="identity-sub">Lead chemist</p>
         </div>
         <span className="dot" />
       </div>
@@ -76,21 +124,122 @@ function Sidebar({ activeNav, onSelect, onAbout }) {
 
       <div className="sidebar-footer">
         <button className="about-link" type="button" onClick={onAbout}>About</button>
-        <p className="footer-status"><span className="dot" /> Encrypted</p>
-        <p className="footer-version">Lionel OS v1.0.26</p>
+        <p className="footer-status"><span className="dot" /> Containment sealed</p>
+        <p className="footer-version">Lab OS v1.0.26</p>
       </div>
     </aside>
   )
 }
 
-function ModulePlaceholder({ title, desc }) {
+function ReactionsPanel() {
   return (
-    <div className="module-placeholder">
-      <p className="pill"><span className="dot" /> Module loaded</p>
-      <h2 className="module-title">{title}</h2>
-      <p className="module-desc">{desc}</p>
+    <div className="panel-section">
+      <div className="panel-header">
+        <p className="pill"><span className="dot" /> {REACTIONS.length} reactions running</p>
+        <h2 className="module-title">Reactions</h2>
+        <p className="module-desc">Live progress across everything currently on the bench.</p>
+      </div>
+      <div className="reaction-list">
+        {REACTIONS.map((r) => (
+          <div className="reaction-card" key={r.name}>
+            <div className="reaction-top">
+              <span className="reaction-name">{r.name}</span>
+              <span className="reaction-temp">{r.temp}</span>
+            </div>
+            <div className="status-track">
+              <div className="status-fill" style={{ width: `${r.pct}%` }} />
+            </div>
+            <div className="reaction-bottom">
+              <span className="reaction-stage">{r.stage}</span>
+              <span className="reaction-eta">{r.eta}</span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   )
+}
+
+function SamplesPanel() {
+  return (
+    <div className="panel-section">
+      <div className="panel-header">
+        <p className="pill"><span className="dot" /> {SAMPLES.length} samples logged</p>
+        <h2 className="module-title">Samples</h2>
+        <p className="module-desc">Current inventory, storage location and analysis status.</p>
+      </div>
+      <div className="table-wrap">
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Sample</th>
+              <th>Status</th>
+              <th>Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SAMPLES.map((s) => (
+              <tr key={s.id}>
+                <td>{s.id}</td>
+                <td>{s.name}</td>
+                <td><span className="status-chip">{s.status}</span></td>
+                <td>{s.location}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  )
+}
+
+function FormulasPanel() {
+  return (
+    <div className="panel-section">
+      <div className="panel-header">
+        <p className="pill"><span className="dot" /> {FORMULAS.length} formulas saved</p>
+        <h2 className="module-title">Formulas</h2>
+        <p className="module-desc">Quick reference for compounds used across active work.</p>
+      </div>
+      <div className="formula-grid">
+        {FORMULAS.map((f) => (
+          <div className="formula-card" key={f.name}>
+            <p className="formula-symbol">{f.formula}</p>
+            <p className="formula-name">{f.name}</p>
+            <p className="formula-note">{f.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function LabNotesPanel() {
+  return (
+    <div className="panel-section">
+      <div className="panel-header">
+        <p className="pill"><span className="dot" /> {LAB_NOTES.length} entries this week</p>
+        <h2 className="module-title">Lab notes</h2>
+        <p className="module-desc">Observations and follow-ups from recent sessions.</p>
+      </div>
+      <div className="notes-list">
+        {LAB_NOTES.map((n) => (
+          <div className="note-card" key={n.date}>
+            <span className="note-date">{n.date}</span>
+            <p className="note-text">{n.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const NAV_PANELS = {
+  Reactions: ReactionsPanel,
+  Samples: SamplesPanel,
+  Formulas: FormulasPanel,
+  'Lab notes': LabNotesPanel,
 }
 
 function Hero({ activeNav, initialized, onInitialize, showLogs, onToggleLogs, logs }) {
@@ -105,22 +254,25 @@ function Hero({ activeNav, initialized, onInitialize, showLogs, onToggleLogs, lo
       <div className="divider" />
 
       {activeNav !== 'Dashboard' ? (
-        <ModulePlaceholder {...NAV_CONTENT[activeNav]} />
+        (() => {
+          const Panel = NAV_PANELS[activeNav]
+          return <Panel />
+        })()
       ) : (
         <div className="hero">
-          <span className="pill"><span className="dot" /> {initialized ? 'System initialized' : 'System online'}</span>
-          <h2 className="hero-title">Gyimah Richlove <span className="slashes">👩‍🔬</span></h2>
-          <p className="hero-tag">Universal Chemist🧪⚗️</p>
+          <span className="pill"><span className="dot" /> {initialized ? 'Reaction initialized' : 'Lab online'}</span>
+          <h2 className="hero-title">GYIMAH RICHLOVE <span className="slashes">👩‍🔬</span></h2>
+          <p className="hero-tag">Universal chemist🧪⚗️</p>
           <p className="hero-desc">
-            Welcome to the private command interface. Monitor systems, analyze networks and
-            control your digital environment.
+            Welcome to the private lab interface. Monitor reactions, analyze samples and
+            keep your experiments under control.
           </p>
           <div className="hero-actions">
             <button className="btn-primary" type="button" onClick={onInitialize}>
-              {initialized ? 'System initialized' : 'Initialize system'} <span>+</span>
+              {initialized ? 'Reaction initialized' : 'Start reaction'} <span>+</span>
             </button>
             <button className="btn-secondary" type="button" onClick={onToggleLogs}>
-              {showLogs ? 'Hide logs' : 'View logs'}
+              {showLogs ? 'Hide log' : 'View experiment log'}
             </button>
           </div>
           {showLogs && (
@@ -221,10 +373,10 @@ function AboutPage({ onBack }) {
 }
 
 const INIT_LOGS = [
-  '[10:48:02] Boot sequence started',
-  '[10:48:04] Verifying root access... ok',
-  '[10:48:06] Establishing encrypted channel',
-  '[10:48:09] All systems nominal',
+  '[10:48:02] Experiment sequence started',
+  '[10:48:04] Verifying safety protocols... ok',
+  '[10:48:06] Calibrating instruments',
+  '[10:48:09] All readings nominal',
 ]
 
 function App() {
@@ -236,6 +388,7 @@ function App() {
   if (page === 'about') {
     return (
       <div className="shell">
+        <BubbleField />
         <main className="main about-main">
           <AboutPage onBack={() => setPage('app')} />
         </main>
@@ -245,6 +398,7 @@ function App() {
 
   return (
     <div className="shell">
+      <BubbleField />
       <Sidebar activeNav={activeNav} onSelect={setActiveNav} onAbout={() => setPage('about')} />
       <main className="main">
         <Hero
