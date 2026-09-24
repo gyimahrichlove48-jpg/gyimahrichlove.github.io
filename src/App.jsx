@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './App.css'
+import { CornerNav, GhostNum } from './components/PageChrome'
+import Skills from './components/Skills'
+import Contact from './components/Contact'
 
 const CHAPTERS = [
   { key: 'about', num: '01', label: 'About' },
@@ -7,24 +10,6 @@ const CHAPTERS = [
   { key: 'skills', num: '03', label: 'Skills' },
   { key: 'resume', num: '04', label: 'Résumé' },
   { key: 'contact', num: '05', label: 'Contact' },
-]
-
-const GHOST_NUM = { about: '01', journey: '02', skills: '03', resume: '04', contact: '05' }
-const PAGE_LABELS = { about: 'About', journey: 'Journey', skills: 'Skills', resume: 'Résumé', contact: 'Contact' }
-
-const SKILL_GROUPS = [
-  {
-    title: 'Computer & digital',
-    items: ['MS Word, Excel, PowerPoint', 'AutoCAD (basic)', 'Data analysis (Excel)'],
-  },
-  {
-    title: 'Engineering & field',
-    items: ['Data collection & analysis', 'Engineering drawing basics'],
-  },
-  {
-    title: 'Working style',
-    items: ['Problem solving', 'Time management', 'Written & verbal communication'],
-  },
 ]
 
 const JOURNEY = [
@@ -48,22 +33,12 @@ const JOURNEY = [
     title: 'Rebuilt around the plan',
     text: 'Reworked the whole site to match what I\u2019d written down: real content instead of placeholder data, a proper flow between pages, and a look that fits a chemical engineering portfolio instead of a generic template.',
   },
+  {
+    week: 'Week 4',
+    title: 'Split the file apart',
+    text: 'Moved the shared page chrome, Skills and Contact out of one long App.jsx into their own files in components/ — same page, safer to change.',
+  },
 ]
-
-function CornerNav({ page, onHome }) {
-  return (
-    <>
-      <a className="corner-brand" href="#" onClick={(e) => { e.preventDefault(); onHome() }}>
-        <span className="arrow">←</span> Richlove Gyimah
-      </a>
-      <span className="corner-mark">{PAGE_LABELS[page]}</span>
-    </>
-  )
-}
-
-function GhostNum({ page }) {
-  return <span className="ghost-num" aria-hidden="true">{GHOST_NUM[page]}</span>
-}
 
 function Home({ onNavigate }) {
   return (
@@ -182,33 +157,6 @@ function Journey({ onNavigate, onHome }) {
   )
 }
 
-function Skills({ onNavigate, onHome }) {
-  return (
-    <div className="page-shell fade-in">
-      <GhostNum page="skills" />
-      <CornerNav page="skills" onHome={onHome} />
-      <div className="page-inner">
-        <span className="page-label">03 &mdash; Skills</span>
-        <h2 className="page-title">What I can already do</h2>
-        <p className="page-text">
-          Picked up through coursework, this bootcamp, and the sales role on my résumé.
-        </p>
-        {SKILL_GROUPS.map((g) => (
-          <div className="about-block" key={g.title}>
-            <p className="about-block-title">{g.title}</p>
-            <div className="tag-row">
-              {g.items.map((i) => <span className="tag" key={i}>{i}</span>)}
-            </div>
-          </div>
-        ))}
-        <a className="next-link" href="#" onClick={(e) => { e.preventDefault(); onNavigate('resume') }}>
-          See the full r&eacute;sum&eacute; <span className="arrow">→</span>
-        </a>
-      </div>
-    </div>
-  )
-}
-
 function Resume({ onNavigate, onHome }) {
   return (
     <div className="page-shell fade-in">
@@ -228,41 +176,6 @@ function Resume({ onNavigate, onHome }) {
         <a className="next-link" href="#" onClick={(e) => { e.preventDefault(); onNavigate('contact') }}>
           Get in touch <span className="arrow">→</span>
         </a>
-      </div>
-    </div>
-  )
-}
-
-function Contact({ onHome }) {
-  return (
-    <div className="page-shell fade-in">
-      <GhostNum page="contact" />
-      <CornerNav page="contact" onHome={onHome} />
-      <div className="page-inner">
-        <span className="page-label">05 &mdash; Contact</span>
-        <h2 className="page-title">Get in touch</h2>
-        <p className="page-text">
-          Open to internships, placements and entry-level roles in chemical engineering and
-          related fields.
-        </p>
-        <div className="contact-list">
-          <a className="contact-row" href="mailto:gyimahrichlove48@email.com">
-            <span className="contact-row-label">Email</span>
-            <span className="contact-row-value">gyimahrichlove48@email.com</span>
-          </a>
-          <a className="contact-row" href="tel:+233548484454">
-            <span className="contact-row-label">Phone</span>
-            <span className="contact-row-value">+233 54 848 4454</span>
-          </a>
-          <a className="contact-row" href="https://www.linkedin.com/in/richlove-gyimah" target="_blank" rel="noreferrer">
-            <span className="contact-row-label">LinkedIn</span>
-            <span className="contact-row-value">linkedin.com/in/richlove-gyimah</span>
-          </a>
-          <a className="contact-row" href="https://github.com/gyimahrichlove48-jpg" target="_blank" rel="noreferrer">
-            <span className="contact-row-label">GitHub</span>
-            <span className="contact-row-value">github.com/gyimahrichlove48-jpg</span>
-          </a>
-        </div>
       </div>
     </div>
   )

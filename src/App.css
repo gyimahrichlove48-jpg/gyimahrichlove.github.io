@@ -211,6 +211,17 @@ h1, h2, .page-title, .home-name { font-family: var(--font-display); font-weight:
 }
 
 .page-inner { max-width: 580px; width: 100%; position: relative; z-index: 1; }
+.page-inner-wide { max-width: 720px; width: 100%; position: relative; z-index: 1; }
+
+.skills-groups {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 36px;
+}
+
+@media (max-width: 700px) {
+  .skills-groups { grid-template-columns: 1fr; }
+}
 
 .page-label {
   display: block;
