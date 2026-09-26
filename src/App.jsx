@@ -4,14 +4,6 @@ import { CornerNav, GhostNum } from './components/PageChrome'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
 
-const CHAPTERS = [
-  { key: 'about', num: '01', label: 'About' },
-  { key: 'journey', num: '02', label: 'Journey' },
-  { key: 'skills', num: '03', label: 'Skills' },
-  { key: 'resume', num: '04', label: 'Résumé' },
-  { key: 'contact', num: '05', label: 'Contact' },
-]
-
 const JOURNEY = [
   {
     week: 'Week 1',
@@ -43,30 +35,34 @@ const JOURNEY = [
 function Home({ onNavigate }) {
   return (
     <div className="home fade-in">
+      <img className="home-photo" src="/profile.jpg" alt="Richlove Gyimah" />
+      <span className="home-right-caption">Tarkwa, Ghana</span>
       <div className="home-left">
         <span className="home-eyebrow">Chemical engineering student &middot; OHS certified</span>
         <h1 className="home-name">Richlove Gyimah</h1>
         <p className="home-tag">
-          Studying chemical engineering at UMaT, Tarkwa. Eager to apply it somewhere real.
+          Aspiring Chemical Engineer passionate about science, technology, innovation, and
+          problem-solving. I enjoy learning how things work, turning challenges into
+          opportunities, and continuously developing the skills needed to create practical
+          solutions and make a meaningful impact.
         </p>
-        <div className="chapters">
-          {CHAPTERS.map((c) => (
-            <a
-              key={c.key}
-              className="chapter-link"
-              href="#"
-              onClick={(e) => { e.preventDefault(); onNavigate(c.key) }}
-            >
-              <span className="chapter-num">{c.num}</span>
-              <span className="chapter-label">{c.label}</span>
-              <span className="chapter-arrow">→</span>
-            </a>
-          ))}
+        <p className="home-tagline">Curious mind. Creative thinker. Future engineer.</p>
+        <div className="home-cta-row">
+          <a
+            className="btn btn-accent"
+            href="#"
+            onClick={(e) => { e.preventDefault(); onNavigate('about') }}
+          >
+            View my work <span>→</span>
+          </a>
+          <a
+            className="btn btn-outline-light"
+            href="#"
+            onClick={(e) => { e.preventDefault(); onNavigate('contact') }}
+          >
+            Contact me
+          </a>
         </div>
-      </div>
-      <div className="home-right">
-        <img className="home-photo" src="/profile.jpg" alt="Richlove Gyimah" />
-        <span className="home-right-caption">Tarkwa, Ghana</span>
       </div>
     </div>
   )
