@@ -1,12 +1,14 @@
-const GHOST_NUM = { about: '01', journey: '02', skills: '03', resume: '04', contact: '05' }
-const PAGE_LABELS = { about: 'About', journey: 'Journey', skills: 'Skills', resume: 'Résumé', contact: 'Contact' }
+import { Link } from 'react-router-dom'
 
-export function CornerNav({ page, onHome }) {
+const PAGE_LABELS = { about: 'About', journey: 'Journey', skills: 'Skills', resume: 'Résumé', contact: 'Contact' }
+const GHOST_NUM = { about: '01', journey: '02', skills: '03', resume: '04', contact: '05' }
+
+export function CornerNav({ page }) {
   return (
     <>
-      <a className="corner-brand" href="#" onClick={(e) => { e.preventDefault(); onHome() }}>
+      <Link className="corner-brand" to="/">
         <span className="arrow">←</span> Richlove Gyimah
-      </a>
+      </Link>
       <span className="corner-mark">{PAGE_LABELS[page]}</span>
     </>
   )

@@ -1,4 +1,5 @@
-import { CornerNav, GhostNum } from './PageChrome'
+import { Link } from 'react-router-dom'
+import { CornerNav, GhostNum } from '../components/PageChrome'
 
 const SKILL_GROUPS = [
   {
@@ -19,11 +20,11 @@ const SKILL_GROUPS = [
   },
 ]
 
-export default function Skills({ onNavigate, onHome }) {
+export default function Skills() {
   return (
     <div className="page-shell fade-in">
       <GhostNum page="skills" />
-      <CornerNav page="skills" onHome={onHome} />
+      <CornerNav page="skills" />
       <div className="page-inner page-inner-wide">
         <span className="page-label">03 &mdash; Skills</span>
         <h2 className="page-title">What I can already do</h2>
@@ -42,9 +43,9 @@ export default function Skills({ onNavigate, onHome }) {
             </div>
           ))}
         </div>
-        <a className="next-link" href="#" onClick={(e) => { e.preventDefault(); onNavigate('resume') }}>
+        <Link className="next-link" to="/resume">
           See the full r&eacute;sum&eacute; <span className="arrow">→</span>
-        </a>
+        </Link>
       </div>
     </div>
   )

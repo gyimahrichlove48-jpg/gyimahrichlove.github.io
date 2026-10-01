@@ -1,10 +1,10 @@
-import { CornerNav, GhostNum } from './PageChrome'
+import { CornerNav, GhostNum } from '../components/PageChrome'
 
-export default function Contact({ onHome }) {
+export default function Contact() {
   return (
     <div className="page-shell fade-in">
       <GhostNum page="contact" />
-      <CornerNav page="contact" onHome={onHome} />
+      <CornerNav page="contact" />
       <div className="page-inner">
         <span className="page-label">05 &mdash; Contact</span>
         <h2 className="page-title">Get in touch</h2>
