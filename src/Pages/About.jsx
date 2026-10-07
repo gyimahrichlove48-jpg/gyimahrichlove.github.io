@@ -30,12 +30,36 @@ export default function About() {
         </div>
 
         <div className="about-block">
+          <p className="about-block-title">What drives me</p>
+          <p className="page-text" style={{ marginBottom: 0 }}>
+            I'm curious and determined, with a growing interest in technology alongside my
+            studies in chemical engineering, electronics, engineering drawing, mathematics and
+            analytical chemistry. I like exploring new ideas and building projects that push my
+            skills forward, academically and beyond. My goal is to become a skilled chemical
+            engineer and use that knowledge to solve real-world problems &mdash; and to keep
+            learning things, like web development, that aren't part of the syllabus but make me
+            better at the work anyway.
+          </p>
+        </div>
+
+        <div className="about-block">
           <p className="about-block-title">Core skills</p>
           <div className="tag-row">
             <span className="tag">Data analysis (Excel)</span>
             <span className="tag">AutoCAD (basic)</span>
             <span className="tag">Problem solving</span>
             <span className="tag">Communication</span>
+          </div>
+        </div>
+
+        <div className="about-block">
+          <p className="about-block-title">How I work</p>
+          <div className="tag-row">
+            <span className="tag">Teamwork</span>
+            <span className="tag">Critical thinking</span>
+            <span className="tag">Time management</span>
+            <span className="tag">Adaptability</span>
+            <span className="tag">Willingness to learn</span>
           </div>
         </div>
 
