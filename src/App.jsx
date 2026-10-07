@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
-import Home from './pages/Home'
-import About from './pages/About'
-import Journey from './pages/Journey'
-import Skills from './pages/Skills'
-import Resume from './pages/Resume'
-import Contact from './pages/Contact'
+import Home from './Pages/Home'
+import About from './Pages/About'
+import Journey from './Pages/Journey'
+import Skills from './Pages/Skills'
+import Resume from './Pages/Resume'
+import Contact from './Pages/Contact'
 
 function App() {
   return (
