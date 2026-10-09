@@ -39,7 +39,8 @@ export default function Contact() {
   }
 
   return (
-    <div className="page-shell fade-in">
+    <div className="page-shell contact-shell fade-in">
+      <img className="contact-bg-photo" src="/contact-photo.jpg" alt="Richlove Gyimah" />
       <GhostNum page="contact" />
       <CornerNav page="contact" />
       <div className="page-inner">
